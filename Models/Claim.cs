@@ -2,13 +2,13 @@
 {
     public class Claim
     {
-        public int ClaimId { get; set; }
+        public int Id { get; set; }
         public string LecturerName { get; set; }
-        public DateTime DateSubmitted { get; set; }
-        public double HoursWorked { get; set; }
-        public double HourlyRate { get; set; }
-        public double TotalAmount => HoursWorked * HourlyRate;
-        public string Status { get; set; } = "Pending";
-
+        public decimal HoursWorked { get; set; }
+        public decimal HourlyRate { get; set; }
+        public string Notes { get; set; }
+        public string Status { get; set; } // "Pending", "Approved", "Rejected"
+        public string DocumentPath { get; set; } // For file upload
+        public DateTime DateSubmitted { get; set; } // Date of submission
     }
 }

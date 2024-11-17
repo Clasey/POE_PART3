@@ -1,24 +1,37 @@
-﻿namespace POE_PART3.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using POE_PART3.Models;
+
+namespace POE_PART3.Controllers
 {
-    public class ClaimController
+    public class ClaimController : Controller
     {
-        private readonly List<Claim> claims = new List<Claim>();
-
-        public List<Claim> GetClaims()
+        private static List<Claim> claims = new List<Claim>
         {
-            return claims;
+            new Claim { Id = 1, Description = "January Claim", Amount = 1000, DateSubmitted = DateTime.Now.AddMonths(-1) },
+            new Claim { Id = 2, Description = "February Claim", Amount = 1200, DateSubmitted = DateTime.Now.AddMonths(-2) }
+        };
+
+        public IActionResult Index()
+        {
+            return View(claims);
         }
 
-        public void AddClaim(Claim claim)
+        public IActionResult Create()
         {
-            claims.Add(claim);
+            return View();
         }
 
-        public void UpdateClaimStatus(int claimId, string newStatus)
+        [HttpPost]
+        public IActionResult Create(Claim claim)
         {
-            var claim = claims.FirstOrDefault(c => c.ClaimId == claimId);
-            if (claim != null)
-                claim.Status = newStatus;
+            if (ModelState.IsValid)
+            {
+                claim.Id = claims.Count + 1;
+                claim.DateSubmitted = DateTime.Now;
+                claims.Add(claim);
+                return RedirectToAction("Index");
+            }
+            return View(claim);
         }
     }
 }

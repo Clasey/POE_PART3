@@ -6,16 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Update="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ClaimView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\LoginView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
-
 </Project>
